@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-database-script
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: create-database-script.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

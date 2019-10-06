@@ -1,4 +1,4 @@
-package help.desk.mobile.api.helpdeskmobile;
+package help.desk.mobile.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

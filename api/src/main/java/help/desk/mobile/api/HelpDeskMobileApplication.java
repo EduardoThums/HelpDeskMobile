@@ -1,4 +1,4 @@
-package help.desk.mobile.api.helpdeskmobile;
+package help.desk.mobile.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

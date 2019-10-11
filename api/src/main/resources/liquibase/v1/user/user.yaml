@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-table-user-add-username-column
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: alter-table-user-add-username-column.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

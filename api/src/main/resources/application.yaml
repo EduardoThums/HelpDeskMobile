@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/helpdeskmobile
-    username: root
-    password: root
+    username: helpdeskmobile
+    password: helpdeskmobile
   jpa:
     properties:
       hibernate:

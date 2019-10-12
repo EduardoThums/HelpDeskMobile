@@ -6,7 +6,7 @@ import help.desk.mobile.api.domain.type.ProfileType;
 import help.desk.mobile.api.exception.InvalidAreaException;
 import help.desk.mobile.api.exception.UserAlreadyExistsException;
 import help.desk.mobile.api.repository.user.UserRepository;
-import help.desk.mobile.api.service.area.ExistsAreaByIdService;
+import help.desk.mobile.api.service.area.ExistsByIdAreaService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +18,13 @@ public class SaveUserService {
 
 	private UserRepository userRepository;
 
-	private ExistsAreaByIdService existsAreaByIdService;
+	private ExistsByIdAreaService existsByIdAreaService;
 
 	private PasswordEncoder passwordEncoder;
 
-	public SaveUserService(UserRepository userRepository, ExistsAreaByIdService existsAreaByIdService, PasswordEncoder passwordEncoder) {
+	public SaveUserService(UserRepository userRepository, ExistsByIdAreaService existsByIdAreaService, PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
-		this.existsAreaByIdService = existsAreaByIdService;
+		this.existsByIdAreaService = existsByIdAreaService;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -33,7 +33,7 @@ public class SaveUserService {
 			throw new UserAlreadyExistsException();
 		}
 
-		if (!existsAreaByIdService.existsById(request.getAreaId())) {
+		if (!existsByIdAreaService.existsById(request.getAreaId())) {
 			throw new InvalidAreaException();
 		}
 

@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
  * @author eduardo.thums
  */
 @Service
-public class ExistsAreaByIdService {
+public class ExistsByIdAreaService {
 
 	private AreaRepository areaRepository;
 
-	public ExistsAreaByIdService(AreaRepository areaRepository) {
+	public ExistsByIdAreaService(AreaRepository areaRepository) {
 		this.areaRepository = areaRepository;
 	}
 

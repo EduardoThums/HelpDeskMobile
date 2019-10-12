@@ -2,7 +2,11 @@ package help.desk.mobile.api.controller.user.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,6 +15,8 @@ import javax.validation.constraints.Size;
  * @author eduardo.thums
  */
 @Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class UserRequest {
 

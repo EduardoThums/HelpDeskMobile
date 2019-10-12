@@ -2,3 +2,6 @@ databaseChangeLog:
   - include:
       file: user/user.yaml
       relativeToChangelogFile: true
+  - include:
+      file: area/area.yaml
+      relativeToChangelogFile: true

@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-table-area-add-id-sequence
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: alter-table-area-add-id-sequence.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

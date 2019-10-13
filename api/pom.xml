@@ -29,9 +29,6 @@
 
         <!-- Json Web Token -->
         <jjwt.version>0.9.0</jjwt.version>
-
-        <!-- Spring Security -->
-        <spring-security-oauth2.version>5.1.1.RELEASE</spring-security-oauth2.version>
     </properties>
 
     <dependencies>
@@ -59,18 +56,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-client</artifactId>
-            <version>${spring-security-oauth2.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-jose</artifactId>
-            <version>${spring-security-oauth2.version}</version>
         </dependency>
 
         <!-- Json Web Token -->
@@ -107,14 +92,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.1.0</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

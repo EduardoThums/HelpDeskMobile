@@ -1,4 +1,4 @@
-package com.example.helpdeskmobile;
+package help.desk.mobile.app;
 
 import org.junit.Test;
 

@@ -18,8 +18,6 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class UserPrincipal implements UserDetails {
 
-	private static final String DEFAULT_ROLE = "USER";
-
 	@EqualsAndHashCode.Include
 	private Long id;
 
@@ -42,7 +40,7 @@ public class UserPrincipal implements UserDetails {
 	public static UserPrincipal create(UserEntity userEntity) {
 
 		List<GrantedAuthority> authorities = Collections.singletonList(
-				new SimpleGrantedAuthority(DEFAULT_ROLE)
+				new SimpleGrantedAuthority(userEntity.getProfile().getRole())
 		);
 
 		return new UserPrincipal(
@@ -52,7 +50,6 @@ public class UserPrincipal implements UserDetails {
 				authorities
 		);
 	}
-
 
 	@Override
 	@JsonIgnore
@@ -79,7 +76,6 @@ public class UserPrincipal implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
-
 
 	@Override
 	public boolean isCredentialsNonExpired() {

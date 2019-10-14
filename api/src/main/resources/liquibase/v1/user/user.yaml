@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-table-user-add-username-column
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: alter-table-user-add-username-column.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: alter-table-user-add-column-password
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: alter-table-user-add-column-password.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: alter-table-user-add-id-sequence
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: alter-table-user-add-id-sequence.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

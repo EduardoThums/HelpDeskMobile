@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/helpdeskmobile
-    username: root
-    password: root
+    username: helpdeskmobile
+    password: helpdeskmobile
   jpa:
     properties:
       hibernate:
@@ -12,3 +12,9 @@ spring:
             non_contextual_creation: true
   liquibase:
     change-log: classpath:/liquibase/liquibase-changelog.yaml
+security:
+  jwt:
+    secret: "help-desk-mobile-jwt"
+    expiration: 86400000 #24 hours in milliseconds
+  public:
+    path: "/public/**"

@@ -1,7 +1,7 @@
 databaseChangeLog:
   - include:
-      file: genesis/genesis.yaml
+      file: user/user.yaml
       relativeToChangelogFile: true
   - include:
-      file: v1/v1.yaml
+      file: area/area.yaml
       relativeToChangelogFile: true

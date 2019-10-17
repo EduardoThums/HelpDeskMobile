@@ -3,4 +3,6 @@
     <string name="app_name" translatable="false">HelpDeskMobile</string>
     <string name="login_button" translatable="false">Login</string>
     <string name="sign_up_button" translatable="false">Cadastro</string>
+    <string name="email_text" translatable="false">Email</string>
+    <string name="password_text" translatable="false">Senha</string>
 </resources>

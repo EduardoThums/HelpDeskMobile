@@ -5,4 +5,5 @@
     <string name="sign_up_button" translatable="false">Cadastro</string>
     <string name="email_text" translatable="false">Email</string>
     <string name="password_text" translatable="false">Senha</string>
+    <string name="login_screen_title">@string/login_button</string>
 </resources>

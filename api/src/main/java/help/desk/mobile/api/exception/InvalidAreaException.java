@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class InvalidAreaException extends RuntimeException {
 
 	public InvalidAreaException() {
-		super("Area doest exists");
+		super("Area doesn't exists");
 	}
 }

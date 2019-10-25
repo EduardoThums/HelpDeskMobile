@@ -2,6 +2,7 @@ package help.desk.mobile.api.domain.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 /**
  * @author eduardo.thums
  */
+@Setter
 @Getter
 @Table(name = "ticket")
 @Entity

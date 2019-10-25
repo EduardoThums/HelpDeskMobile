@@ -27,10 +27,7 @@ public class UserPrincipal implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserPrincipal(Long id,
-	                     String name,
-	                     String password,
-	                     Collection<? extends GrantedAuthority> authorities) {
+	public UserPrincipal(Long id, String name, String password, Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.username = name;
 		this.password = password;
@@ -38,10 +35,7 @@ public class UserPrincipal implements UserDetails {
 	}
 
 	public static UserPrincipal create(UserEntity userEntity) {
-
-		List<GrantedAuthority> authorities = Collections.singletonList(
-				new SimpleGrantedAuthority(userEntity.getProfile().getRole())
-		);
+		final List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(userEntity.getProfile().getRole()));
 
 		return new UserPrincipal(
 				userEntity.getId(),

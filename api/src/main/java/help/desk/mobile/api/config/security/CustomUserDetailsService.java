@@ -2,7 +2,6 @@ package help.desk.mobile.api.config.security;
 
 import help.desk.mobile.api.domain.entity.UserEntity;
 import help.desk.mobile.api.repository.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,24 +15,27 @@ import java.util.function.Supplier;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	@Autowired
 	private UserRepository userRepository;
+
+	public CustomUserDetailsService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-		UserEntity userEntity = getUser(() -> userRepository.findByUsername(username));
+		final UserEntity userEntity = getUser(() -> userRepository.findByUsername(username));
+
 		return UserPrincipal.create(userEntity);
 	}
 
 	public UserDetails loadUserById(Long id) {
-		UserEntity userEntity = getUser(() -> userRepository.findById(id));
+		final UserEntity userEntity = getUser(() -> userRepository.findById(id));
+
 		return UserPrincipal.create(userEntity);
 	}
 
 	private UserEntity getUser(Supplier<Optional<UserEntity>> supplier) {
-		return supplier.get().orElseThrow(() ->
-				new UsernameNotFoundException("User does not exists")
-		);
+		return supplier.get().orElseThrow(() -> new UsernameNotFoundException("User does not exists"));
 	}
 
 	public UserPrincipal getUser() {

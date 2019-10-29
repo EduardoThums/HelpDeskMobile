@@ -66,6 +66,9 @@ public class UserEntity {
 	@Enumerated(EnumType.STRING)
 	private ProfileType profile;
 
+	@NotNull
+	private boolean deleted;
+
 	public UserEntity(@NotNull @Size(max = 256) String name, @NotNull @Size(max = 256) String username, @NotNull @Size(max = 2048) String password, @Email @NotNull @Size(max = 256) String email, @CPF @NotNull @Size(max = 11) String cpf, @NotNull @Size(max = 12) String phone, @NotNull Long areaId, @NotNull ProfileType profile) {
 		this.name = name;
 		this.username = username;

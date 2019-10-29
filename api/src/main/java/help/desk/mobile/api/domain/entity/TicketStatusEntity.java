@@ -44,6 +44,9 @@ public class TicketStatusEntity {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
+	@NotNull
+	private boolean deleted;
+
 	public TicketStatusEntity(@NotNull Long ticketId, @NotNull boolean currentStatus, @NotNull @PastOrPresent LocalDateTime createdDate, @NotNull Status status) {
 		this.ticketId = ticketId;
 		this.currentStatus = currentStatus;

@@ -12,3 +12,16 @@ databaseChangeLog:
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
+  - changeSet:
+      id: alter-table-area-add-deleted-column
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: alter-table-area-add-deleted-column.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

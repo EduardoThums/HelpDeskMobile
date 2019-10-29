@@ -51,6 +51,9 @@ public class TicketEntity {
 
 	private Long curatorId;
 
+	@NotNull
+	private boolean deleted;
+
 	public TicketEntity(@NotBlank @Size(max = 256) String title, @NotBlank @Size(max = 512) String description, @NotNull Long areaId, @NotNull Long authorId, @NotNull LocalDateTime createdDate) {
 		this.title = title;
 		this.description = description;

@@ -25,3 +25,16 @@ databaseChangeLog:
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
+  - changeSet:
+      id: alter-table-ticket-add-deleted-column
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: alter-table-ticket-add-deleted-column.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

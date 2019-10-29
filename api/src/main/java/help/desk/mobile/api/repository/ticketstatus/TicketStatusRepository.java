@@ -10,9 +10,5 @@ import java.util.Optional;
  */
 public interface TicketStatusRepository extends JpaRepository<TicketStatusEntity, Long> {
 
-	//	@Query("SELECT ts FROM TicketStatus ts " +
-//			"WHERE ts.tickerId = :ticketId " +
-//			"ORDER BY ticker")
-//
 	Optional<TicketStatusEntity> findByTicketIdAndCurrentStatusTrue(Long ticketId);
 }

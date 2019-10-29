@@ -6,6 +6,7 @@ import help.desk.mobile.api.domain.entity.TicketEntity;
 import help.desk.mobile.api.domain.entity.TicketStatusEntity;
 import help.desk.mobile.api.domain.status.Status;
 import help.desk.mobile.api.exception.ticket.InvalidTicketException;
+import help.desk.mobile.api.exception.ticket.TicketAlreadyCanceledException;
 import help.desk.mobile.api.exception.ticket.TicketAlreadyEvaluatedException;
 import help.desk.mobile.api.exception.ticket.TicketNotAllowedException;
 import help.desk.mobile.api.repository.ticket.TicketRepository;
@@ -35,7 +36,7 @@ public class CancelTicketByIdService {
 				.orElseThrow(InvalidTicketException::new);
 
 		if (ticketEntity.isDeleted()) {
-			throw new TicketAlreadyEvaluatedException();
+			throw new TicketAlreadyCanceledException();
 		}
 
 		final UserPrincipal loggedUser = customUserDetailsService.getUser();

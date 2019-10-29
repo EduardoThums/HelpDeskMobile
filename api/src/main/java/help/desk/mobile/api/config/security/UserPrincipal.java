@@ -2,6 +2,7 @@ package help.desk.mobile.api.config.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import help.desk.mobile.api.domain.entity.UserEntity;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+@Builder
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

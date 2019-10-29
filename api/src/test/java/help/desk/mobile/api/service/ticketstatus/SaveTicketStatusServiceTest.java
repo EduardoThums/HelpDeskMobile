@@ -1,4 +1,4 @@
-package help.desk.mobile.api.ticketstatus;
+package help.desk.mobile.api.service.ticketstatus;
 
 import help.desk.mobile.api.AbstractUnitTest;
 import help.desk.mobile.api.domain.entity.TicketStatusEntity;
@@ -6,7 +6,6 @@ import help.desk.mobile.api.domain.status.Status;
 import help.desk.mobile.api.exception.InvalidTicketException;
 import help.desk.mobile.api.repository.ticketstatus.TicketStatusRepository;
 import help.desk.mobile.api.service.ticket.ExistsByIdTicketService;
-import help.desk.mobile.api.service.ticketstatus.SaveTicketStatusService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.*;

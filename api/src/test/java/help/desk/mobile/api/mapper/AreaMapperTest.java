@@ -29,7 +29,7 @@ public class AreaMapperTest extends AbstractUnitTest {
 		areaEntity.setName(name);
 
 		// Act
-		final List<AreaDetailsResponse> responseList = areaMapper.toAreaDetailsResponse(Collections.singletonList(areaEntity));
+		final List<AreaDetailsResponse> responseList = areaMapper.toAreaDetailsResponseList(Collections.singletonList(areaEntity));
 
 		// Assert
 		Assert.assertFalse(responseList.isEmpty());

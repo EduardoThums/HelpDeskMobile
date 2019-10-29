@@ -1,7 +1,9 @@
 package help.desk.mobile.api.mapper;
 
 import help.desk.mobile.api.config.security.CustomUserDetailsService;
+import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.controller.ticket.request.SaveTicketRequest;
+import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.domain.entity.TicketEntity;
 import org.springframework.stereotype.Component;
 
@@ -26,5 +28,14 @@ public class TicketMapper {
 				request.getAreaId(),
 				customUserDetailsService.getUser().getId(),
 				LocalDateTime.now());
+	}
+
+	public TicketDetailsResponse toTicketDetailsResponse(TicketEntity ticketEntity, AreaDetailsResponse area) {
+		return TicketDetailsResponse
+				.builder()
+				.title(ticketEntity.getTitle())
+				.description(ticketEntity.getDescription())
+				.area(area)
+				.build();
 	}
 }

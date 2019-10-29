@@ -2,30 +2,30 @@ package help.desk.mobile.api.service.area;
 
 import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.domain.entity.AreaEntity;
+import help.desk.mobile.api.exception.InvalidAreaException;
 import help.desk.mobile.api.mapper.AreaMapper;
 import help.desk.mobile.api.repository.area.AreaRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author eduardo.thums
  */
 @Service
-public class FindAllAreasService {
+public class FindAreaDetailsByIdService {
 
 	private AreaRepository areaRepository;
 
 	private AreaMapper areaMapper;
 
-	public FindAllAreasService(AreaRepository areaRepository, AreaMapper areaMapper) {
+	public FindAreaDetailsByIdService(AreaRepository areaRepository, AreaMapper areaMapper) {
 		this.areaRepository = areaRepository;
 		this.areaMapper = areaMapper;
 	}
 
-	public List<AreaDetailsResponse> findAllAreas() {
-		final List<AreaEntity> areaEntities = areaRepository.findAll();
+	public AreaDetailsResponse findDetailsById(Long id) {
+		final AreaEntity areaEntity = areaRepository.findById(id)
+				.orElseThrow(InvalidAreaException::new);
 
-		return areaMapper.toAreaDetailsResponseList(areaEntities);
+		return areaMapper.toAreaDetailsResponse(areaEntity);
 	}
 }

@@ -3,7 +3,7 @@ package help.desk.mobile.api.service.ticket;
 import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.domain.entity.TicketEntity;
-import help.desk.mobile.api.exception.InvalidTicketException;
+import help.desk.mobile.api.exception.ticket.InvalidTicketException;
 import help.desk.mobile.api.mapper.TicketMapper;
 import help.desk.mobile.api.repository.ticket.TicketRepository;
 import help.desk.mobile.api.service.area.FindAreaDetailsByIdService;

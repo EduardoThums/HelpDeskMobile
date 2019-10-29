@@ -1,7 +1,7 @@
 package help.desk.mobile.api.controller.user;
 
 import help.desk.mobile.api.controller.user.request.UserRequest;
-import help.desk.mobile.api.exception.UserAlreadyExistsException;
+import help.desk.mobile.api.exception.user.UserAlreadyExistsException;
 import help.desk.mobile.api.service.user.SaveUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

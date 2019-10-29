@@ -4,6 +4,7 @@ import help.desk.mobile.api.domain.status.Status;
 import help.desk.mobile.api.domain.type.PostgreSQLEnumType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.springframework.data.annotation.CreatedDate;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 /**
  * @author eduardo.thums
  */
+@Setter
 @Getter
 @Table(name = "ticket_status")
 @Entity

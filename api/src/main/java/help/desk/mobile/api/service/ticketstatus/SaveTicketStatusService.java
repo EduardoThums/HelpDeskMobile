@@ -2,7 +2,7 @@ package help.desk.mobile.api.service.ticketstatus;
 
 import help.desk.mobile.api.domain.entity.TicketStatusEntity;
 import help.desk.mobile.api.domain.status.Status;
-import help.desk.mobile.api.exception.InvalidTicketException;
+import help.desk.mobile.api.exception.ticket.InvalidTicketException;
 import help.desk.mobile.api.repository.ticketstatus.TicketStatusRepository;
 import help.desk.mobile.api.service.ticket.ExistsByIdTicketService;
 import org.springframework.stereotype.Service;

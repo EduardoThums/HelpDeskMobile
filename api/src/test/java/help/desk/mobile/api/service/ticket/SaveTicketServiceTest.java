@@ -4,7 +4,7 @@ import help.desk.mobile.api.AbstractUnitTest;
 import help.desk.mobile.api.controller.ticket.request.SaveTicketRequest;
 import help.desk.mobile.api.domain.entity.TicketEntity;
 import help.desk.mobile.api.domain.status.Status;
-import help.desk.mobile.api.exception.InvalidAreaException;
+import help.desk.mobile.api.exception.area.InvalidAreaException;
 import help.desk.mobile.api.mapper.TicketMapper;
 import help.desk.mobile.api.repository.ticket.TicketRepository;
 import help.desk.mobile.api.service.area.ExistsByIdAreaService;

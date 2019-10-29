@@ -2,6 +2,7 @@ package help.desk.mobile.api.controller.ticket;
 
 import help.desk.mobile.api.controller.ticket.request.SaveTicketRequest;
 import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
+import help.desk.mobile.api.service.ticket.CancelTicketByIdService;
 import help.desk.mobile.api.service.ticket.FindTicketDetailsByIdService;
 import help.desk.mobile.api.service.ticket.SaveTicketService;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,12 @@ public class TicketController {
 
 	private FindTicketDetailsByIdService findTicketDetailsByIdService;
 
-	public TicketController(SaveTicketService saveTicketService, FindTicketDetailsByIdService findTicketDetailsByIdService) {
+	private CancelTicketByIdService cancelTicketByIdService;
+
+	public TicketController(SaveTicketService saveTicketService, FindTicketDetailsByIdService findTicketDetailsByIdService, CancelTicketByIdService cancelTicketByIdService) {
 		this.saveTicketService = saveTicketService;
 		this.findTicketDetailsByIdService = findTicketDetailsByIdService;
+		this.cancelTicketByIdService = cancelTicketByIdService;
 	}
 
 	@GetMapping("/{id}")
@@ -34,5 +38,10 @@ public class TicketController {
 	@PostMapping
 	public ResponseEntity<Long> saveTicket(@RequestBody @Valid SaveTicketRequest request) {
 		return new ResponseEntity<>(saveTicketService.saveTicket(request), HttpStatus.CREATED);
+	}
+
+	@PutMapping("/{id}/cancel")
+	public void cancelTicket(@PathVariable Long id) {
+		cancelTicketByIdService.cancelById(id);
 	}
 }

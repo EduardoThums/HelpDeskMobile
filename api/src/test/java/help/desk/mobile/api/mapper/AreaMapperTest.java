@@ -19,7 +19,7 @@ public class AreaMapperTest extends AbstractUnitTest {
 	private AreaMapper areaMapper;
 
 	@Test
-	public void toAreaDetailsResponse() {
+	public void toAreaDetailsResponseList() {
 		// Arrange
 		final Long id = 1L;
 		final String name = "name";
@@ -37,5 +37,23 @@ public class AreaMapperTest extends AbstractUnitTest {
 		final AreaDetailsResponse response = responseList.get(0);
 		Assert.assertEquals(name, response.getName());
 		Assert.assertEquals(id, response.getId());
+	}
+
+	@Test
+	public void toAreaDetailsResponse() {
+		// Arrange
+		final Long id = 1L;
+		final String name = "name";
+
+		final AreaEntity areaEntity = new AreaEntity();
+		areaEntity.setId(id);
+		areaEntity.setName(name);
+
+		// Act
+		final AreaDetailsResponse response = areaMapper.toAreaDetailsResponse(areaEntity);
+
+		// Assert
+		Assert.assertEquals(id, response.getId());
+		Assert.assertEquals(name, response.getName());
 	}
 }

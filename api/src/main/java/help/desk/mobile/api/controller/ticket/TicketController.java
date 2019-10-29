@@ -3,6 +3,7 @@ package help.desk.mobile.api.controller.ticket;
 import help.desk.mobile.api.controller.ticket.request.SaveTicketRequest;
 import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.service.ticket.CancelTicketByIdService;
+import help.desk.mobile.api.service.ticket.FindAllTicketDetailsService;
 import help.desk.mobile.api.service.ticket.FindTicketDetailsByIdService;
 import help.desk.mobile.api.service.ticket.SaveTicketService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author eduardo.thums
@@ -24,13 +26,22 @@ public class TicketController {
 
 	private CancelTicketByIdService cancelTicketByIdService;
 
-	public TicketController(SaveTicketService saveTicketService, FindTicketDetailsByIdService findTicketDetailsByIdService, CancelTicketByIdService cancelTicketByIdService) {
+	private FindAllTicketDetailsService findAllTicketDetailsService;
+
+	public TicketController(SaveTicketService saveTicketService, FindTicketDetailsByIdService findTicketDetailsByIdService, CancelTicketByIdService cancelTicketByIdService, FindAllTicketDetailsService findAllTicketDetailsService) {
 		this.saveTicketService = saveTicketService;
 		this.findTicketDetailsByIdService = findTicketDetailsByIdService;
 		this.cancelTicketByIdService = cancelTicketByIdService;
+		this.findAllTicketDetailsService = findAllTicketDetailsService;
+	}
+
+	@GetMapping
+	public ResponseEntity<List<TicketDetailsResponse>> findAll() {
+		return ResponseEntity.ok(findAllTicketDetailsService.findAll());
 	}
 
 	@GetMapping("/{id}")
+
 	public ResponseEntity<TicketDetailsResponse> findById(@PathVariable Long id) {
 		return ResponseEntity.ok(findTicketDetailsByIdService.findDetailsById(id));
 	}

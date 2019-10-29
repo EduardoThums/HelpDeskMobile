@@ -4,10 +4,13 @@ import help.desk.mobile.api.AbstractUnitTest;
 import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.domain.entity.TicketEntity;
+import help.desk.mobile.api.domain.entity.TicketStatusEntity;
+import help.desk.mobile.api.domain.status.Status;
 import help.desk.mobile.api.exception.ticket.InvalidTicketException;
 import help.desk.mobile.api.mapper.TicketMapper;
 import help.desk.mobile.api.repository.ticket.TicketRepository;
 import help.desk.mobile.api.service.area.FindAreaDetailsByIdService;
+import help.desk.mobile.api.service.ticketstatus.FindCurrentStatusByTicketIdService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.BDDMockito;
@@ -33,16 +36,23 @@ public class FindTicketDetailsByIdServiceTest extends AbstractUnitTest {
 	@Mock
 	private FindAreaDetailsByIdService findAreaDetailsByIdService;
 
+	@Mock
+	private FindCurrentStatusByTicketIdService findCurrentStatusByTicketIdService;
+
 	@Test
 	public void findDetailsById() {
 		// Arrange
 		final Long id = 1L;
 		final Long areaId = 2L;
+		final Status status = Status.PENDING;
 
 		final TicketEntity mockedTicketEntity = new TicketEntity();
 		mockedTicketEntity.setAreaId(areaId);
 
 		final AreaDetailsResponse mockedArea = new AreaDetailsResponse();
+
+		final TicketStatusEntity mockedTicketStatusEntity = new TicketStatusEntity();
+		mockedTicketStatusEntity.setStatus(status);
 
 		final TicketDetailsResponse mockedResponse = new TicketDetailsResponse();
 
@@ -52,7 +62,10 @@ public class FindTicketDetailsByIdServiceTest extends AbstractUnitTest {
 		BDDMockito.given(findAreaDetailsByIdService.findDetailsById(areaId))
 				.willReturn(mockedArea);
 
-		BDDMockito.given(ticketMapper.toTicketDetailsResponse(mockedTicketEntity, mockedArea))
+		BDDMockito.given(findCurrentStatusByTicketIdService.findCurrentStatusByTicketId(id))
+				.willReturn(mockedTicketStatusEntity);
+
+		BDDMockito.given(ticketMapper.toTicketDetailsResponse(mockedTicketEntity, mockedArea, status))
 				.willReturn(mockedResponse);
 
 		// Act

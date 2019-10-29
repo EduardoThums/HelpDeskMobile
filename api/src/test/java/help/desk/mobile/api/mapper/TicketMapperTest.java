@@ -7,6 +7,7 @@ import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.controller.ticket.request.SaveTicketRequest;
 import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.domain.entity.TicketEntity;
+import help.desk.mobile.api.domain.status.Status;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.BDDMockito;
@@ -57,6 +58,7 @@ public class TicketMapperTest extends AbstractUnitTest {
 		// Arrange
 		final String title = "title";
 		final String description = "description";
+		final Status status = Status.PENDING;
 
 		final TicketEntity ticketEntity = new TicketEntity();
 		ticketEntity.setTitle(title);
@@ -65,12 +67,13 @@ public class TicketMapperTest extends AbstractUnitTest {
 		final AreaDetailsResponse area = new AreaDetailsResponse();
 
 		// Act
-		final TicketDetailsResponse response = ticketMapper.toTicketDetailsResponse(ticketEntity, area);
+		final TicketDetailsResponse response = ticketMapper.toTicketDetailsResponse(ticketEntity, area, status);
 
 		// Assert
 		Assert.assertEquals(title, response.getTitle());
 		Assert.assertEquals(description, response.getDescription());
 		Assert.assertEquals(area, response.getArea());
+		Assert.assertEquals(status, response.getStatus());
 	}
 
 	private UserPrincipal setupUser() {

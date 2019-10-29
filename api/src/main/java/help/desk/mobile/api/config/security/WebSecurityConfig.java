@@ -1,6 +1,5 @@
 package help.desk.mobile.api.config.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,22 +18,26 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-		jsr250Enabled = true
-)
+@EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Value("${security.public.path}")
 	private String publicPath;
 
-	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 
-	@Autowired
 	private UserDetailsService userDetailsService;
 
-	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+	public WebSecurityConfig(@Value("${security.public.path}") String publicPath,
+	                         CustomUserDetailsService customUserDetailsService,
+	                         UserDetailsService userDetailsService,
+	                         JwtAuthenticationFilter jwtAuthenticationFilter) {
+		this.publicPath = publicPath;
+		this.customUserDetailsService = customUserDetailsService;
+		this.userDetailsService = userDetailsService;
+		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+	}
 
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -57,7 +60,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				.cors().and().csrf().disable()
+				.cors()
+				.and()
+				.csrf()
+				.disable()
+
 				.exceptionHandling()
 				.and()
 				.sessionManagement()
@@ -67,24 +74,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.antMatchers(publicPath)
 				.permitAll()
-
-				.antMatchers("/swagger-ui.html")
-				.permitAll()
-
-				.antMatchers("/webjars/springfox-swagger-ui/**")
-				.permitAll()
-
-				.antMatchers("/swagger-resources/**")
-				.permitAll()
-
-				.antMatchers("/v2/api-docs/**")
-				.permitAll()
-
 				.anyRequest()
 				.authenticated();
 
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
 	}
-
 }

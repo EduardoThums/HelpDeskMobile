@@ -13,31 +13,31 @@ import java.util.Optional;
 
 import static java.lang.Long.parseLong;
 import static java.util.Optional.empty;
-import static java.util.Optional.ofNullable;
 
 @Component
-
 public class JwtTokenProvider {
 
-	@Value("${security.jwt.secret}")
 	private String jwtSecret;
 
-	@Value("${security.jwt.expiration}")
 	private int jwtExpiration;
 
+	public JwtTokenProvider(@Value("${security.jwt.secret}") String jwtSecret,
+	                        @Value("${security.jwt.expiration}") int jwtExpiration) {
+		this.jwtSecret = jwtSecret;
+		this.jwtExpiration = jwtExpiration;
+	}
+
 	public String generateToken(Authentication authentication) {
+		final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
-		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-
-		Date now = new Date();
-		Date expiryDate = new Date(new Date().getTime() + jwtExpiration);
+		final Date now = new Date();
+		final Date expiryDate = new Date(new Date().getTime() + jwtExpiration);
 
 		return Jwts.builder()
 				.setSubject(Long.toString(userPrincipal.getId()))
 				.setIssuedAt(now)
 				.setExpiration(expiryDate)
 				.signWith(SignatureAlgorithm.HS512, jwtSecret)
-
 				.compact();
 	}
 
@@ -45,7 +45,7 @@ public class JwtTokenProvider {
 		try {
 			Claims claims = parse(jwt).getBody();
 
-			return ofNullable(parseLong(claims.getSubject()));
+			return Optional.of(parseLong(claims.getSubject()));
 		} catch (Exception ex) {
 			return empty();
 		}

@@ -13,14 +13,18 @@ import java.util.stream.Collectors;
 @Component
 public class AreaMapper {
 
-	public List<AreaDetailsResponse> toAreaDetailsResponse(List<AreaEntity> areaEntities) {
+	public List<AreaDetailsResponse> toAreaDetailsResponseList(List<AreaEntity> areaEntities) {
 		return areaEntities
 				.stream()
-				.map(areaEntity -> AreaDetailsResponse
-						.builder()
-						.id(areaEntity.getId())
-						.name(areaEntity.getName())
-						.build())
+				.map(this::toAreaDetailsResponse)
 				.collect(Collectors.toList());
+	}
+
+	public AreaDetailsResponse toAreaDetailsResponse(AreaEntity areaEntity) {
+		return AreaDetailsResponse
+				.builder()
+				.id(areaEntity.getId())
+				.name(areaEntity.getName())
+				.build();
 	}
 }

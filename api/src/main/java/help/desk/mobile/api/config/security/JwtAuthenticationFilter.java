@@ -1,6 +1,5 @@
 package help.desk.mobile.api.config.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,21 +17,23 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 
-	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
+
+	public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider, CustomUserDetailsService customUserDetailsService) {
+		this.jwtTokenProvider = jwtTokenProvider;
+		this.customUserDetailsService = customUserDetailsService;
+	}
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-		String jwt = getJwt(request);
+		final String jwt = getJwt(request);
 
 		jwtTokenProvider.getUserId(jwt).ifPresent(id -> {
-			UserDetails user = customUserDetailsService.loadUserById(id);
+			final UserDetails user = customUserDetailsService.loadUserById(id);
 
-			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+			final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
 			SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -42,13 +43,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	}
 
 	private String getJwt(HttpServletRequest request) {
-		String token = request.getHeader("Authorization");
+		final String token = request.getHeader("Authorization");
 
-		if (StringUtils.hasText(token)) {
-			return token.substring(7);
-		}
-
-		return null;
+		return StringUtils.hasText(token) ? token.substring(7) : null;
 	}
-
 }

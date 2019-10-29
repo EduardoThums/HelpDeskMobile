@@ -5,3 +5,9 @@ databaseChangeLog:
   - include:
       file: area/area.yaml
       relativeToChangelogFile: true
+  - include:
+      file: ticket/ticket.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: ticketstatus/ticketStatus.yaml
+      relativeToChangelogFile: true

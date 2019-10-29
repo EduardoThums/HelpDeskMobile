@@ -39,7 +39,7 @@ public class FindAllAreasServiceTest extends AbstractUnitTest {
 				.willReturn(Collections.singletonList(mockedAreaEntity));
 
 
-		BDDMockito.given(areaMapper.toAreaDetailsResponse(Collections.singletonList(mockedAreaEntity)))
+		BDDMockito.given(areaMapper.toAreaDetailsResponseList(Collections.singletonList(mockedAreaEntity)))
 				.willReturn(Collections.singletonList(mockedResponse));
 
 		// Act

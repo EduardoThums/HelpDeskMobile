@@ -37,7 +37,7 @@ public class TicketController {
 
 	@GetMapping
 	public ResponseEntity<List<TicketDetailsResponse>> findAllByLoggedUser() {
-		return ResponseEntity.ok(findAllTicketDetailsByLoggedUserService.findAll());
+		return ResponseEntity.ok(findAllTicketDetailsByLoggedUserService.findAllByLoggedUser());
 	}
 
 	@GetMapping("/{id}")

@@ -28,7 +28,7 @@ public class FindAllTicketDetailsByLoggedUserService {
 		this.customUserDetailsService = customUserDetailsService;
 	}
 
-	public List<TicketDetailsResponse> findAll() {
+	public List<TicketDetailsResponse> findAllByLoggedUser() {
 		final UserPrincipal loggedUser = customUserDetailsService.getUser();
 
 		final List<TicketDetailsDto> ticketDetailsDtos = ticketRepository.findAllTicketDetailsDtoByAuthorId(loggedUser.getId());

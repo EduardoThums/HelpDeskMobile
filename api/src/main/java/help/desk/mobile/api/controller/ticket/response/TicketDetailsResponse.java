@@ -16,6 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TicketDetailsResponse {
 
+	private Long id;
+
 	private String title;
 
 	private String description;

@@ -4,10 +4,12 @@ import help.desk.mobile.api.domain.status.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author eduardo.thums
  */
+@Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

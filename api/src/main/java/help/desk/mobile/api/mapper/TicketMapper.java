@@ -37,6 +37,7 @@ public class TicketMapper {
 	public TicketDetailsResponse toTicketDetailsResponse(TicketEntity ticketEntity, AreaDetailsResponse area, Status status) {
 		return TicketDetailsResponse
 				.builder()
+				.id(ticketEntity.getId())
 				.title(ticketEntity.getTitle())
 				.description(ticketEntity.getDescription())
 				.area(area)
@@ -56,6 +57,7 @@ public class TicketMapper {
 
 					return TicketDetailsResponse
 							.builder()
+							.id(ticketDetailsDto.getId())
 							.title(ticketDetailsDto.getTitle())
 							.description(ticketDetailsDto.getDescription())
 							.area(area)

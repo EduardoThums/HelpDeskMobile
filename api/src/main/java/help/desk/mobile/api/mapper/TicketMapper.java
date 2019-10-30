@@ -5,9 +5,13 @@ import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.controller.ticket.request.SaveTicketRequest;
 import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.domain.entity.TicketEntity;
+import help.desk.mobile.api.domain.status.Status;
+import help.desk.mobile.api.dto.TicketDetailsDto;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author eduardo.thums
@@ -30,12 +34,36 @@ public class TicketMapper {
 				LocalDateTime.now());
 	}
 
-	public TicketDetailsResponse toTicketDetailsResponse(TicketEntity ticketEntity, AreaDetailsResponse area) {
+	public TicketDetailsResponse toTicketDetailsResponse(TicketEntity ticketEntity, AreaDetailsResponse area, Status status) {
 		return TicketDetailsResponse
 				.builder()
+				.id(ticketEntity.getId())
 				.title(ticketEntity.getTitle())
 				.description(ticketEntity.getDescription())
 				.area(area)
+				.status(status)
 				.build();
+	}
+
+	public List<TicketDetailsResponse> toTicketDetailsResponses(List<TicketDetailsDto> ticketDetailsDtos) {
+		return ticketDetailsDtos
+				.stream()
+				.map(ticketDetailsDto -> {
+					final AreaDetailsResponse area = AreaDetailsResponse
+							.builder()
+							.id(ticketDetailsDto.getAreaId())
+							.name(ticketDetailsDto.getAreaName())
+							.build();
+
+					return TicketDetailsResponse
+							.builder()
+							.id(ticketDetailsDto.getId())
+							.title(ticketDetailsDto.getTitle())
+							.description(ticketDetailsDto.getDescription())
+							.area(area)
+							.status(ticketDetailsDto.getStatus())
+							.build();
+				})
+				.collect(Collectors.toList());
 	}
 }

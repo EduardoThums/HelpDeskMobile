@@ -1,20 +1,19 @@
-package help.desk.mobile.api.controller.ticket.response;
+package help.desk.mobile.api.dto;
 
-import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.domain.status.Status;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author eduardo.thums
  */
+@Setter
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TicketDetailsResponse {
+public class TicketDetailsDto {
 
 	private Long id;
 
@@ -22,7 +21,11 @@ public class TicketDetailsResponse {
 
 	private String description;
 
-	private AreaDetailsResponse area;
+	private Long areaId;
+
+	private String areaName;
+
+	private Long ticketStatusId;
 
 	private Status status;
 }

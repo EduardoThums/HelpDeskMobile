@@ -3,7 +3,7 @@ package help.desk.mobile.api.controller.ticket;
 import help.desk.mobile.api.controller.ticket.request.SaveTicketRequest;
 import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.service.ticket.CancelTicketByIdService;
-import help.desk.mobile.api.service.ticket.FindAllTicketDetailsService;
+import help.desk.mobile.api.service.ticket.FindAllTicketDetailsByLoggedUserService;
 import help.desk.mobile.api.service.ticket.FindTicketDetailsByIdService;
 import help.desk.mobile.api.service.ticket.SaveTicketService;
 import org.springframework.http.HttpStatus;
@@ -26,18 +26,18 @@ public class TicketController {
 
 	private CancelTicketByIdService cancelTicketByIdService;
 
-	private FindAllTicketDetailsService findAllTicketDetailsService;
+	private FindAllTicketDetailsByLoggedUserService findAllTicketDetailsByLoggedUserService;
 
-	public TicketController(SaveTicketService saveTicketService, FindTicketDetailsByIdService findTicketDetailsByIdService, CancelTicketByIdService cancelTicketByIdService, FindAllTicketDetailsService findAllTicketDetailsService) {
+	public TicketController(SaveTicketService saveTicketService, FindTicketDetailsByIdService findTicketDetailsByIdService, CancelTicketByIdService cancelTicketByIdService, FindAllTicketDetailsByLoggedUserService findAllTicketDetailsByLoggedUserService) {
 		this.saveTicketService = saveTicketService;
 		this.findTicketDetailsByIdService = findTicketDetailsByIdService;
 		this.cancelTicketByIdService = cancelTicketByIdService;
-		this.findAllTicketDetailsService = findAllTicketDetailsService;
+		this.findAllTicketDetailsByLoggedUserService = findAllTicketDetailsByLoggedUserService;
 	}
 
 	@GetMapping
-	public ResponseEntity<List<TicketDetailsResponse>> findAll() {
-		return ResponseEntity.ok(findAllTicketDetailsService.findAll());
+	public ResponseEntity<List<TicketDetailsResponse>> findAllByLoggedUser() {
+		return ResponseEntity.ok(findAllTicketDetailsByLoggedUserService.findAll());
 	}
 
 	@GetMapping("/{id}")

@@ -4,6 +4,7 @@ import help.desk.mobile.api.domain.entity.TicketEntity;
 import help.desk.mobile.api.dto.TicketDetailsDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public interface TicketRepository extends JpaRepository<TicketEntity, Long> {
 			"ON t.areaId = a.id " +
 			"WHERE t.deleted = FALSE " +
 			"AND ts.currentStatus = TRUE " +
+			"AND t.authorId = :authorId " +
 			"ORDER BY t.createdDate DESC")
-	List<TicketDetailsDto> findAllTicketDetailsDto();
+	List<TicketDetailsDto> findAllTicketDetailsDtoByAuthorId(@Param("authorId") Long authorId);
 }

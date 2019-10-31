@@ -44,14 +44,14 @@ public class EvaluateTicketByIdService {
 		final TicketEntity ticketEntity = ticketRepository.findById(id)
 				.orElseThrow(InvalidTicketException::new);
 
+		if (ticketEntity.isDeleted()) {
+			throw new TicketAlreadyCanceledException();
+		}
+
 		final Long loggedUserId = customUserDetailsService.getUser().getId();
 
 		if (ticketEntity.getAuthorId().equals(loggedUserId)) {
 			throw new EvaluateTicketOwnedException();
-		}
-
-		if (ticketEntity.isDeleted()) {
-			throw new TicketAlreadyCanceledException();
 		}
 
 		final TicketStatusEntity currentTicketStatus = findCurrentStatusByTicketIdService.findCurrentStatusByTicketId(id);

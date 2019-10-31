@@ -13,10 +13,10 @@ import org.mockito.*;
 /**
  * @author eduardo.thums
  */
-public class SaveTicketStatusServiceTest extends AbstractUnitTest {
+public class CreateTicketStatusServiceTest extends AbstractUnitTest {
 
 	@InjectMocks
-	private SaveTicketStatusService saveTicketStatusService;
+	private CreateTicketStatusService createTicketStatusService;
 
 	@Mock
 	private TicketStatusRepository ticketStatusRepository;
@@ -39,7 +39,7 @@ public class SaveTicketStatusServiceTest extends AbstractUnitTest {
 				.willReturn(true);
 
 		// Act
-		saveTicketStatusService.saveTicketStatus(ticketId, currentStatus, status);
+		createTicketStatusService.saveTicketStatus(ticketId, currentStatus, status);
 
 		// Assert
 		BDDMockito.then(ticketStatusRepository)
@@ -63,6 +63,6 @@ public class SaveTicketStatusServiceTest extends AbstractUnitTest {
 				.willReturn(false);
 
 		// Act
-		saveTicketStatusService.saveTicketStatus(ticketId, false, Status.PENDING);
+		createTicketStatusService.saveTicketStatus(ticketId, false, Status.PENDING);
 	}
 }

@@ -7,7 +7,7 @@ import help.desk.mobile.api.exception.area.InvalidAreaException;
 import help.desk.mobile.api.mapper.TicketMapper;
 import help.desk.mobile.api.repository.ticket.TicketRepository;
 import help.desk.mobile.api.service.area.ExistsByIdAreaService;
-import help.desk.mobile.api.service.ticketstatus.SaveTicketStatusService;
+import help.desk.mobile.api.service.ticketstatus.CreateTicketStatusService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,13 +22,13 @@ public class SaveTicketService {
 
 	private ExistsByIdAreaService existsByIdAreaService;
 
-	private SaveTicketStatusService saveTicketStatusService;
+	private CreateTicketStatusService createTicketStatusService;
 
-	public SaveTicketService(TicketRepository ticketRepository, TicketMapper ticketMapper, ExistsByIdAreaService existsByIdAreaService, SaveTicketStatusService saveTicketStatusService) {
+	public SaveTicketService(TicketRepository ticketRepository, TicketMapper ticketMapper, ExistsByIdAreaService existsByIdAreaService, CreateTicketStatusService createTicketStatusService) {
 		this.ticketRepository = ticketRepository;
 		this.ticketMapper = ticketMapper;
 		this.existsByIdAreaService = existsByIdAreaService;
-		this.saveTicketStatusService = saveTicketStatusService;
+		this.createTicketStatusService = createTicketStatusService;
 	}
 
 	public Long saveTicket(SaveTicketRequest request) {
@@ -40,7 +40,7 @@ public class SaveTicketService {
 
 		final TicketEntity persistedTicketEntity = ticketRepository.saveAndFlush(ticketEntity);
 
-		saveTicketStatusService.saveTicketStatus(persistedTicketEntity.getId(), true, Status.PENDING);
+		createTicketStatusService.saveTicketStatus(persistedTicketEntity.getId(), true, Status.PENDING);
 
 		return persistedTicketEntity.getId();
 	}

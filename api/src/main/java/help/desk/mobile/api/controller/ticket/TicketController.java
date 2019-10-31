@@ -6,12 +6,13 @@ import help.desk.mobile.api.service.ticket.CancelTicketByIdService;
 import help.desk.mobile.api.service.ticket.FindAllTicketDetailsByLoggedUserService;
 import help.desk.mobile.api.service.ticket.FindTicketDetailsByIdService;
 import help.desk.mobile.api.service.ticket.SaveTicketService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @author eduardo.thums
@@ -36,8 +37,8 @@ public class TicketController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<TicketDetailsResponse>> findAllByLoggedUser() {
-		return ResponseEntity.ok(findAllTicketDetailsByLoggedUserService.findAllByLoggedUser());
+	public ResponseEntity<Page<TicketDetailsResponse>> findAllByLoggedUser(Pageable pageable) {
+		return ResponseEntity.ok(findAllTicketDetailsByLoggedUserService.findAllByLoggedUser(pageable));
 	}
 
 	@GetMapping("/{id}")

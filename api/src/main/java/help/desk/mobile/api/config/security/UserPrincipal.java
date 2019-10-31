@@ -17,10 +17,9 @@ import java.util.List;
 @Builder
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(of = "id")
 public class UserPrincipal implements UserDetails {
 
-	@EqualsAndHashCode.Include
 	private Long id;
 
 	private String username;

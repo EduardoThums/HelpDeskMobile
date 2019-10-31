@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -23,19 +22,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private String publicPath;
 
-	private CustomUserDetailsService customUserDetailsService;
+	private String adminPath;
 
-	private UserDetailsService userDetailsService;
+	private String adminRole;
+
+	private CustomUserDetailsService customUserDetailsService;
 
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
 	public WebSecurityConfig(@Value("${security.public.path}") String publicPath,
+	                         @Value("${security.admin.path}") String adminPath,
+	                         @Value("${security.admin.role}") String adminRole,
 	                         CustomUserDetailsService customUserDetailsService,
-	                         UserDetailsService userDetailsService,
 	                         JwtAuthenticationFilter jwtAuthenticationFilter) {
 		this.publicPath = publicPath;
+		this.adminPath = adminPath;
+		this.adminRole = adminRole;
 		this.customUserDetailsService = customUserDetailsService;
-		this.userDetailsService = userDetailsService;
 		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
 	}
 
@@ -60,10 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				.cors()
-				.and()
-				.csrf()
-				.disable()
+				.cors().and().csrf().disable()
 
 				.exceptionHandling()
 				.and()
@@ -74,6 +74,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.antMatchers(publicPath)
 				.permitAll()
+
+				.antMatchers(adminPath)
+				.hasRole(adminRole)
+
 				.anyRequest()
 				.authenticated();
 

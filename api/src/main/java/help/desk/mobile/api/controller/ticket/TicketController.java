@@ -41,7 +41,6 @@ public class TicketController {
 	}
 
 	@GetMapping("/{id}")
-
 	public ResponseEntity<TicketDetailsResponse> findById(@PathVariable Long id) {
 		return ResponseEntity.ok(findTicketDetailsByIdService.findDetailsById(id));
 	}

@@ -16,5 +16,8 @@ security:
   jwt:
     secret: "help-desk-mobile-jwt"
     expiration: 86400000 #24 hours in milliseconds
+  admin:
+    role: "ADMIN"
+    path: "/admin/**"
   public:
     path: "/public/**"

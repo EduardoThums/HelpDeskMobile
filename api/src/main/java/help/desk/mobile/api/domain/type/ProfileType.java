@@ -10,8 +10,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ProfileType {
 
-	ADMIN("ADMIN_ROLE"),
-	DEFAULT("DEFAULT_ROLE");
+	ADMIN("ROLE_ADMIN"),
+	DEFAULT("ROLE_DEFAULT");
 
 	private final String role;
 }

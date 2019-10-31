@@ -8,7 +8,7 @@ import help.desk.mobile.api.exception.area.InvalidAreaException;
 import help.desk.mobile.api.mapper.TicketMapper;
 import help.desk.mobile.api.repository.ticket.TicketRepository;
 import help.desk.mobile.api.service.area.ExistsByIdAreaService;
-import help.desk.mobile.api.service.ticketstatus.SaveTicketStatusService;
+import help.desk.mobile.api.service.ticketstatus.CreateTicketStatusService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.BDDMockito;
@@ -33,7 +33,7 @@ public class SaveTicketServiceTest extends AbstractUnitTest {
 	private ExistsByIdAreaService existsByIdAreaService;
 
 	@Mock
-	private SaveTicketStatusService saveTicketStatusService;
+	private CreateTicketStatusService createTicketStatusService;
 
 	@Test
 	public void saveTicket() {
@@ -64,9 +64,9 @@ public class SaveTicketServiceTest extends AbstractUnitTest {
 		// Assert
 		Assert.assertEquals(ticketId, response);
 
-		BDDMockito.then(saveTicketStatusService)
+		BDDMockito.then(createTicketStatusService)
 				.should()
-				.saveTicketStatus(ticketId, true, Status.PENDING);
+				.createTicketStatus(ticketId, true, Status.PENDING);
 	}
 
 

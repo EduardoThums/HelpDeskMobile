@@ -37,7 +37,9 @@ public class EditUserService {
 	}
 
 	public void editUser(EditUserRequest request) throws UserAlreadyExistsException {
-		final UserEntity loggedUser = userRepository.findById(customUserDetailsService.getUser().getId())
+		final Long loggedUserId = customUserDetailsService.getUser().getId();
+
+		final UserEntity loggedUser = userRepository.findById(loggedUserId)
 				.orElseThrow(InvalidUserException::new);
 
 		if (request.getPassword() != null || request.getConfirmPassword() != null) {
@@ -57,7 +59,7 @@ public class EditUserService {
 		}
 
 		if (request.getPhone() != null) {
-			if (existsByPhoneByLoggedUserService.existsByPhoneByLoggedUser(request.getPhone(), customUserDetailsService.getUser().getId())) {
+			if (existsByPhoneByLoggedUserService.existsByPhoneByLoggedUser(request.getPhone(), loggedUserId)) {
 				throw new UserAlreadyExistsException();
 			}
 

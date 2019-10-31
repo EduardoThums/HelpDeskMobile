@@ -6,6 +6,9 @@ import help.desk.mobile.api.controller.ticket.response.TicketDetailsResponse;
 import help.desk.mobile.api.dto.TicketDetailsDto;
 import help.desk.mobile.api.mapper.TicketMapper;
 import help.desk.mobile.api.repository.ticket.TicketRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,11 +31,11 @@ public class FindAllTicketDetailsByLoggedUserService {
 		this.customUserDetailsService = customUserDetailsService;
 	}
 
-	public List<TicketDetailsResponse> findAllByLoggedUser() {
+	public Page<TicketDetailsResponse> findAllByLoggedUser(Pageable pageable) {
 		final UserPrincipal loggedUser = customUserDetailsService.getUser();
 
-		final List<TicketDetailsDto> ticketDetailsDtos = ticketRepository.findAllTicketDetailsDtoByAuthorId(loggedUser.getId());
+		final List<TicketDetailsDto> ticketDetailsDtos = ticketRepository.findAllTicketDetailsDtoByAuthorId(loggedUser.getId(), pageable);
 
-		return ticketMapper.toTicketDetailsResponses(ticketDetailsDtos);
+		return new PageImpl<>(ticketMapper.toTicketDetailsResponses(ticketDetailsDtos));
 	}
 }

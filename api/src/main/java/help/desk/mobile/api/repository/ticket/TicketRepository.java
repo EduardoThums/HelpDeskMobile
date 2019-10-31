@@ -31,7 +31,7 @@ public interface TicketRepository extends JpaRepository<TicketEntity, Long> {
 			"AND ts.currentStatus = TRUE " +
 			"AND t.authorId = :authorId " +
 			"ORDER BY t.createdDate DESC")
-	List<TicketDetailsDto> findAllTicketDetailsDtoByAuthorId(@Param("authorId") Long authorId);
+	List<TicketDetailsDto> findAllTicketDetailsDtoByAuthorId(@Param("authorId") Long authorId, Pageable pageable);
 
 	@Query("SELECT NEW help.desk.mobile.api.dto.TicketDetailsDto( " +
 			"t.id, " +

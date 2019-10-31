@@ -12,9 +12,10 @@ import org.junit.Test;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Collections;
-import java.util.List;
 
 /**
  * @author eduardo.thums
@@ -40,6 +41,8 @@ public class FindAllTicketDetailsByLoggedUserServiceTest extends AbstractUnitTes
 
 		final UserPrincipal loggedUser = setupUser(authorId);
 
+		final Pageable pageable = BDDMockito.mock(Pageable.class);
+
 		final TicketDetailsDto ticketDetailsDto = new TicketDetailsDto();
 
 		final TicketDetailsResponse mockedResponse = new TicketDetailsResponse();
@@ -47,20 +50,19 @@ public class FindAllTicketDetailsByLoggedUserServiceTest extends AbstractUnitTes
 		BDDMockito.given(customUserDetailsService.getUser())
 				.willReturn(loggedUser);
 
-		BDDMockito.given(ticketRepository.findAllTicketDetailsDtoByAuthorId(authorId))
+		BDDMockito.given(ticketRepository.findAllTicketDetailsDtoByAuthorId(authorId, pageable))
 				.willReturn(Collections.singletonList(ticketDetailsDto));
 
 		BDDMockito.given(ticketMapper.toTicketDetailsResponses(Collections.singletonList(ticketDetailsDto)))
 				.willReturn(Collections.singletonList(mockedResponse));
 
 		// Act
-		final List<TicketDetailsResponse> responseList = findAllTicketDetailsByLoggedUserService.findAllByLoggedUser();
+		final Page<TicketDetailsResponse> pageResponse = findAllTicketDetailsByLoggedUserService.findAllByLoggedUser(pageable);
 
 		// Assert
-		Assert.assertFalse(responseList.isEmpty());
+		Assert.assertFalse(pageResponse.getContent().isEmpty());
 
-		final TicketDetailsResponse response = responseList.get(0);
-
+		final TicketDetailsResponse response = pageResponse.getContent().get(0);
 		Assert.assertEquals(mockedResponse, response);
 	}
 

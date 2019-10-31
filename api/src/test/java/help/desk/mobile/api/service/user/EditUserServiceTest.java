@@ -104,9 +104,6 @@ public class EditUserServiceTest extends AbstractUnitTest {
 		BDDMockito.given(customUserDetailsService.getUser())
 				.willReturn(someRandomUser);
 
-		BDDMockito.given(userRepository.findById(userId))
-				.willReturn(Optional.empty());
-
 		// Act
 		editUserService.editUser(new EditUserRequest());
 	}

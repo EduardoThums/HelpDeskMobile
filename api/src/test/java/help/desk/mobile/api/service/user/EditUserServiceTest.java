@@ -30,7 +30,7 @@ public class EditUserServiceTest extends AbstractUnitTest {
 	private UserRepository userRepository;
 
 	@Mock
-	private ExistsByPhoneByLoggedUserService existsByPhoneByLoggedUserService;
+	private ExistsByPhoneAndUserIdService existsByPhoneAndUserIdService;
 
 	@Mock
 	private ExistsByIdAreaService existsByIdAreaService;
@@ -76,7 +76,7 @@ public class EditUserServiceTest extends AbstractUnitTest {
 		BDDMockito.given(existsByIdAreaService.existsById(areaId))
 				.willReturn(true);
 
-		BDDMockito.given(existsByPhoneByLoggedUserService.existsByPhoneByLoggedUser(phone, id))
+		BDDMockito.given(existsByPhoneAndUserIdService.existsByPhoneAndUserId(phone, id))
 				.willReturn(false);
 
 		// Act
@@ -197,7 +197,7 @@ public class EditUserServiceTest extends AbstractUnitTest {
 		BDDMockito.given(existsByIdAreaService.existsById(areaId))
 				.willReturn(true);
 
-		BDDMockito.given(existsByPhoneByLoggedUserService.existsByPhoneByLoggedUser(phone, userId))
+		BDDMockito.given(existsByPhoneAndUserIdService.existsByPhoneAndUserId(phone, userId))
 				.willReturn(true);
 
 		// Act

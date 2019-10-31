@@ -7,15 +7,15 @@ import org.springframework.stereotype.Service;
  * @author eduardo.thums
  */
 @Service
-public class ExistsByPhoneByLoggedUserService {
+public class ExistsByPhoneAndUserIdService {
 
 	private UserRepository userRepository;
 
-	public ExistsByPhoneByLoggedUserService(UserRepository userRepository) {
+	public ExistsByPhoneAndUserIdService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
-	public boolean existsByPhoneByLoggedUser(String phone, Long id) {
+	public boolean existsByPhoneAndUserId(String phone, Long id) {
 		return userRepository.existsByPhoneAndId(phone, id);
 	}
 }

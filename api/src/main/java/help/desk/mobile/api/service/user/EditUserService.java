@@ -20,7 +20,7 @@ public class EditUserService {
 
 	private UserRepository userRepository;
 
-	private ExistsByPhoneByLoggedUserService existsByPhoneByLoggedUserService;
+	private ExistsByPhoneAndUserIdService existsByPhoneAndUserIdService;
 
 	private ExistsByIdAreaService existsByIdAreaService;
 
@@ -28,9 +28,9 @@ public class EditUserService {
 
 	private PasswordEncoder passwordEncoder;
 
-	public EditUserService(UserRepository userRepository, ExistsByPhoneByLoggedUserService existsByPhoneByLoggedUserService, ExistsByIdAreaService existsByIdAreaService, CustomUserDetailsService customUserDetailsService, PasswordEncoder passwordEncoder) {
+	public EditUserService(UserRepository userRepository, ExistsByPhoneAndUserIdService existsByPhoneAndUserIdService, ExistsByIdAreaService existsByIdAreaService, CustomUserDetailsService customUserDetailsService, PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
-		this.existsByPhoneByLoggedUserService = existsByPhoneByLoggedUserService;
+		this.existsByPhoneAndUserIdService = existsByPhoneAndUserIdService;
 		this.existsByIdAreaService = existsByIdAreaService;
 		this.customUserDetailsService = customUserDetailsService;
 		this.passwordEncoder = passwordEncoder;
@@ -59,7 +59,7 @@ public class EditUserService {
 		}
 
 		if (request.getPhone() != null) {
-			if (existsByPhoneByLoggedUserService.existsByPhoneByLoggedUser(request.getPhone(), loggedUserId)) {
+			if (existsByPhoneAndUserIdService.existsByPhoneAndUserId(request.getPhone(), loggedUserId)) {
 				throw new UserAlreadyExistsException();
 			}
 

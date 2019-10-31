@@ -87,7 +87,7 @@ public class EvaluateTicketByIdServiceTest extends AbstractUnitTest {
 
 		BDDMockito.then(createTicketStatusService)
 				.should()
-				.saveTicketStatus(id, true, newStatus);
+				.createTicketStatus(id, true, newStatus);
 
 		BDDMockito.then(createTicketStatusService)
 				.shouldHaveNoMoreInteractions();

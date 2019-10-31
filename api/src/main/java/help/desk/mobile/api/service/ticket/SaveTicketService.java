@@ -40,7 +40,7 @@ public class SaveTicketService {
 
 		final TicketEntity persistedTicketEntity = ticketRepository.saveAndFlush(ticketEntity);
 
-		createTicketStatusService.saveTicketStatus(persistedTicketEntity.getId(), true, Status.PENDING);
+		createTicketStatusService.createTicketStatus(persistedTicketEntity.getId(), true, Status.PENDING);
 
 		return persistedTicketEntity.getId();
 	}

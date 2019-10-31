@@ -66,7 +66,7 @@ public class SaveTicketServiceTest extends AbstractUnitTest {
 
 		BDDMockito.then(createTicketStatusService)
 				.should()
-				.saveTicketStatus(ticketId, true, Status.PENDING);
+				.createTicketStatus(ticketId, true, Status.PENDING);
 	}
 
 

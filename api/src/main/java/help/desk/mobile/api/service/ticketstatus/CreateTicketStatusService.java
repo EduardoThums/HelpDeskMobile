@@ -24,7 +24,7 @@ public class CreateTicketStatusService {
 		this.existsByIdTicketService = existsByIdTicketService;
 	}
 
-	public void saveTicketStatus(Long ticketId, boolean currentStatus, Status status) {
+	public void createTicketStatus(Long ticketId, boolean currentStatus, Status status) {
 		if (!existsByIdTicketService.existsById(ticketId)) {
 			throw new InvalidTicketException();
 		}

@@ -29,7 +29,7 @@ public class CreateTicketStatusServiceTest extends AbstractUnitTest {
 
 	@Test
 
-	public void saveTicketStatus() {
+	public void createTicketStatus() {
 		// Arrange
 		final Long ticketId = 1L;
 		final boolean currentStatus = true;
@@ -39,7 +39,7 @@ public class CreateTicketStatusServiceTest extends AbstractUnitTest {
 				.willReturn(true);
 
 		// Act
-		createTicketStatusService.saveTicketStatus(ticketId, currentStatus, status);
+		createTicketStatusService.createTicketStatus(ticketId, currentStatus, status);
 
 		// Assert
 		BDDMockito.then(ticketStatusRepository)
@@ -55,7 +55,7 @@ public class CreateTicketStatusServiceTest extends AbstractUnitTest {
 
 
 	@Test(expected = InvalidTicketException.class)
-	public void saveTicketStatus_throwsInvalidTicketException() {
+	public void createTicketStatus_throwsInvalidTicketException() {
 		// Arrange
 		final Long ticketId = 1L;
 
@@ -63,6 +63,6 @@ public class CreateTicketStatusServiceTest extends AbstractUnitTest {
 				.willReturn(false);
 
 		// Act
-		createTicketStatusService.saveTicketStatus(ticketId, false, Status.PENDING);
+		createTicketStatusService.createTicketStatus(ticketId, false, Status.PENDING);
 	}
 }

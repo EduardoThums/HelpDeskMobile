@@ -66,6 +66,6 @@ public class EvaluateTicketByIdService {
 
 		saveTicketStatusService.saveTicketStatus(currentTicketStatus);
 
-		createTicketStatusService.saveTicketStatus(id, true, request.getNewStatus());
+		createTicketStatusService.createTicketStatus(id, true, request.getNewStatus());
 	}
 }

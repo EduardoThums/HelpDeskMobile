@@ -52,6 +52,4 @@ public interface TicketRepository extends JpaRepository<TicketEntity, Long> {
 			"AND t.authorId != :loggedUserId " +
 			"ORDER BY t.createdDate DESC")
 	List<TicketDetailsDto> findAllTicketDetailsDtoByPendingStatus(@Param("loggedUserId") Long loggedUserId, Pageable pageable);
-
-
 }

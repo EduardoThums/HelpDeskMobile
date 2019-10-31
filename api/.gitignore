@@ -124,6 +124,3 @@ local.properties
 .recommenders/
 
 src/main/webapp/WEB-INF/jboss-web.xml
-
-# TODO: Comment this line when dev tests are finished
-src/main/resources/application.yaml

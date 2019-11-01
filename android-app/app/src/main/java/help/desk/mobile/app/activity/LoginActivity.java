@@ -14,13 +14,13 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.login_email_edit_text)
-    EditText emailEditText;
+    protected EditText emailEditText;
 
     @BindView(R.id.login_password_edit_text)
-    EditText passwordEditText;
+    protected EditText passwordEditText;
 
     @BindView(R.id.login_button)
-    Button loginButton;
+    protected Button loginButton;
 
     @OnClick(R.id.login_button)
     public void submit() {

@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">HelpDeskMobile</string>
+    <string name="welcome" translatable="false">"Bem-vindo ao HelpDesk Mobile!"</string>
+    <string name="app_name" translatable="false">HelpDeskMobile</string>
+    <string name="login_button" translatable="false">Login</string>
+    <string name="sign_up_button" translatable="false">Cadastro</string>
+    <string name="sign_up_screen_title" translatable="false">@string/sign_up_button</string>
+    <string name="name_text_view" translatable="false">Nome</string>
+    <string name="email_text" translatable="false">Email</string>
+    <string name="password_text" translatable="false">Senha</string>
+    <string name="cpf_text" translatable="false">CPF</string>
+    <string name="phone_text" translatable="false">Telefone</string>
+    <string name="area_text" translatable="false">Área de Atuação</string>
+    <string name="sign_up_button_action" translatable="false">Cadastrar</string>
+    <string name="login_screen_title">@string/login_button</string>
 </resources>

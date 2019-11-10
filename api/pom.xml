@@ -13,6 +13,7 @@
     <groupId>help.desk.mobile.api</groupId>
     <artifactId>help-desk-mobile</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <!-- Postgresql -->
@@ -96,6 +97,7 @@
     </dependencies>
 
     <build>
+        <finalName>help-desk-mobile-api</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -103,4 +105,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 </project>

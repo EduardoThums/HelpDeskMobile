@@ -1,7 +1,9 @@
+server:
+  port: ${PORT:8080}
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/helpdeskmobile
+    url: jdbc:postgresql://localhost:5432/helpdeskmobile
     username: helpdeskmobile
     password: helpdeskmobile
   jpa:
@@ -14,7 +16,7 @@ spring:
     change-log: classpath:/liquibase/liquibase-changelog.yaml
 security:
   jwt:
-    secret: "help-desk-mobile-jwt"
+    secret: "nbFvTC0zpL6hypeLYVNcSQquqo1OwuHI8Qtla9nXkhCB9AhDIlFReHS1Q5CSsWvuZG0gX8lsKai5KQMxveT2zQrWhGfdd7mAqnonqnQGpKpVftjpSJrVjLbnbZ7I87"
     expiration: 86400000 #24 hours in milliseconds
   admin:
     role: "ADMIN"

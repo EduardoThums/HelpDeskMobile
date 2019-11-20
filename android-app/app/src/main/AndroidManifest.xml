@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.helpdeskmobile">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="help.desk.mobile.app.activity.SignUpActivity"></activity>
+        <activity android:name="help.desk.mobile.app.activity.HomeActivity"></activity>
+        <activity android:name="help.desk.mobile.app.activity.SignUpActivity" />
         <activity android:name="help.desk.mobile.app.activity.LoginActivity" />
         <activity android:name="help.desk.mobile.app.activity.MainActivity">
             <intent-filter>

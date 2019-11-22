@@ -1,12 +1,12 @@
 package help.desk.mobile.api.controller.user;
 
 import help.desk.mobile.api.controller.user.request.EditUserRequest;
+import help.desk.mobile.api.controller.user.response.UserDetailsResponse;
 import help.desk.mobile.api.exception.user.UserAlreadyExistsException;
+import help.desk.mobile.api.service.user.DetailLoggedUserService;
 import help.desk.mobile.api.service.user.EditUserService;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author eduardo.thums
@@ -17,8 +17,16 @@ public class UserController {
 
 	private EditUserService editUserService;
 
-	public UserController(EditUserService editUserService) {
+	private DetailLoggedUserService detailLoggedUserService;
+
+	public UserController(EditUserService editUserService, DetailLoggedUserService detailLoggedUserService) {
 		this.editUserService = editUserService;
+		this.detailLoggedUserService = detailLoggedUserService;
+	}
+
+	@GetMapping
+	public ResponseEntity<UserDetailsResponse> detailLoggedUser() {
+		return ResponseEntity.ok(detailLoggedUserService.detailLoggedUser());
 	}
 
 	@PutMapping

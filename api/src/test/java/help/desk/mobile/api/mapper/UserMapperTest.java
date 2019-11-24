@@ -4,6 +4,7 @@ import help.desk.mobile.api.AbstractUnitTest;
 import help.desk.mobile.api.controller.area.response.AreaDetailsResponse;
 import help.desk.mobile.api.controller.user.response.UserDetailsResponse;
 import help.desk.mobile.api.domain.entity.UserEntity;
+import help.desk.mobile.api.domain.type.ProfileType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -13,35 +14,38 @@ import org.mockito.InjectMocks;
  */
 public class UserMapperTest extends AbstractUnitTest {
 
-	@InjectMocks
-	private UserMapper userMapper;
+    @InjectMocks
+    private UserMapper userMapper;
 
-	@Test
-	public void toUserDetailsResponse() {
-		// Arrange
-		final Long id = 1L;
-		final String name = "Roberto Jorge das Neves";
-		final String email = "robertojorgedasneves_@bodyfast.com.br";
-		final String cpf = "374.701.664-24";
-		final String phone = "(83) 3504-8132";
+    @Test
+    public void toUserDetailsResponse() {
+        // Arrange
+        final Long id = 1L;
+        final String name = "Roberto Jorge das Neves";
+        final String email = "robertojorgedasneves_@bodyfast.com.br";
+        final String cpf = "374.701.664-24";
+        final String phone = "(83) 3504-8132";
+        final ProfileType profile = ProfileType.DEFAULT;
 
-		final UserEntity userEntity = new UserEntity();
-		userEntity.setId(id);
-		userEntity.setName(name);
-		userEntity.setEmail(email);
-		userEntity.setCpf(cpf);
-		userEntity.setPhone(phone);
+        final UserEntity userEntity = new UserEntity();
+        userEntity.setId(id);
+        userEntity.setName(name);
+        userEntity.setEmail(email);
+        userEntity.setCpf(cpf);
+        userEntity.setPhone(phone);
+        userEntity.setProfile(profile);
 
-		final AreaDetailsResponse area = new AreaDetailsResponse();
+        final AreaDetailsResponse area = new AreaDetailsResponse();
 
-		// Act
-		final UserDetailsResponse response = userMapper.toUserDetailsResponse(userEntity, area);
+        // Act
+        final UserDetailsResponse response = userMapper.toUserDetailsResponse(userEntity, area);
 
-		// Assert
-		Assert.assertEquals(name, response.getName());
-		Assert.assertEquals(email, response.getEmail());
-		Assert.assertEquals(cpf, response.getCpf());
-		Assert.assertEquals(phone, response.getPhone());
-		Assert.assertEquals(area, response.getArea());
-	}
+        // Assert
+        Assert.assertEquals(name, response.getName());
+        Assert.assertEquals(email, response.getEmail());
+        Assert.assertEquals(cpf, response.getCpf());
+        Assert.assertEquals(phone, response.getPhone());
+        Assert.assertEquals(profile, response.getRole());
+        Assert.assertEquals(area, response.getArea());
+    }
 }

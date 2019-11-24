@@ -20,7 +20,7 @@ import java.util.Collections;
 /**
  * @author eduardo.thums
  */
-public class FindAllPendingTicketToCuratorshipServiceTest extends AbstractUnitTest {
+public class 	FindAllPendingTicketToCuratorshipServiceTest extends AbstractUnitTest {
 
 	@InjectMocks
 	private FindAllPendingTicketToCuratorshipService findAllPendingTicketToCuratorshipService;

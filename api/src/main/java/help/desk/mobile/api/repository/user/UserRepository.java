@@ -12,7 +12,9 @@ import java.util.Optional;
  */
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-	Optional<UserEntity> findByUsername(String username);
+	Optional<UserEntity> findByIdAndDeletedFalse(Long id);
+
+	Optional<UserEntity> findByUsernameAndDeletedFalse(String username);
 
 	@Query("SELECT count(1) > 0 " +
 			"FROM UserEntity u " +

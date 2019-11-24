@@ -23,13 +23,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-		final UserEntity userEntity = getUser(() -> userRepository.findByUsername(username));
+		final UserEntity userEntity = getUser(() -> userRepository.findByUsernameAndDeletedFalse(username));
 
 		return UserPrincipal.create(userEntity);
 	}
 
-	public UserDetails loadUserById(Long id) {
-		final UserEntity userEntity = getUser(() -> userRepository.findById(id));
+	UserDetails loadUserById(Long id) {
+		final UserEntity userEntity = getUser(() -> userRepository.findByIdAndDeletedFalse(id));
 
 		return UserPrincipal.create(userEntity);
 	}

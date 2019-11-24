@@ -14,6 +14,8 @@ import java.util.List;
  */
 public interface TicketRepository extends JpaRepository<TicketEntity, Long> {
 
+	List<TicketEntity> findAllByAuthorId(Long authorId);
+
 	@Query("SELECT NEW help.desk.mobile.api.dto.TicketDetailsDto( " +
 			"t.id, " +
 			"t.title, " +

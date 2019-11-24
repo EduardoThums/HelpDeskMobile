@@ -20,67 +20,75 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private String publicPath;
+    private String publicPath;
 
-	private String adminPath;
+    private String adminPath;
 
-	private String adminRole;
+    private String adminRole;
 
-	private CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
-	private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-	public WebSecurityConfig(@Value("${security.public.path}") String publicPath,
-	                         @Value("${security.admin.path}") String adminPath,
-	                         @Value("${security.admin.role}") String adminRole,
-	                         CustomUserDetailsService customUserDetailsService,
-	                         JwtAuthenticationFilter jwtAuthenticationFilter) {
-		this.publicPath = publicPath;
-		this.adminPath = adminPath;
-		this.adminRole = adminRole;
-		this.customUserDetailsService = customUserDetailsService;
-		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-	}
+    public WebSecurityConfig(@Value("${security.public.path}") String publicPath,
+                             @Value("${security.admin.path}") String adminPath,
+                             @Value("${security.admin.role}") String adminRole,
+                             CustomUserDetailsService customUserDetailsService,
+                             JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.publicPath = publicPath;
+        this.adminPath = adminPath;
+        this.adminRole = adminRole;
+        this.customUserDetailsService = customUserDetailsService;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
 
-	@Override
-	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder
-				.userDetailsService(customUserDetailsService)
-				.passwordEncoder(passwordEncoder());
-	}
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder
+                .userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean(BeanIds.AUTHENTICATION_MANAGER)
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-				.cors().and().csrf().disable()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .cors().and().csrf().disable()
 
-				.exceptionHandling()
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.authorizeRequests()
+                .exceptionHandling()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
 
-				.antMatchers(publicPath)
-				.permitAll()
+                .antMatchers(publicPath)
+                .permitAll()
 
-				.antMatchers(adminPath)
-				.hasRole(adminRole)
+                .antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**")
+                .permitAll()
 
-				.anyRequest()
-				.authenticated();
+                .antMatchers(adminPath)
+                .hasRole(adminRole)
 
-		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-	}
+                .anyRequest()
+                .authenticated();
+
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    }
 }

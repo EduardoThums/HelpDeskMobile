@@ -51,7 +51,7 @@ public class TicketController {
 		return new ResponseEntity<>(saveTicketService.saveTicket(request), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/cancel")
+	@DeleteMapping("/{id}/cancel")
 	public void cancelTicket(@PathVariable Long id) {
 		cancelTicketByIdService.cancelById(id);
 	}

@@ -11,15 +11,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-	public UserDetailsResponse toUserDetailsResponse(UserEntity userEntity, AreaDetailsResponse areaDetailsResponse) {
-		return UserDetailsResponse
-				.builder()
-				.id(userEntity.getId())
-				.name(userEntity.getName())
-				.email(userEntity.getEmail())
-				.cpf(userEntity.getCpf())
-				.phone(userEntity.getPhone())
-				.area(areaDetailsResponse)
-				.build();
-	}
+    public UserDetailsResponse toUserDetailsResponse(UserEntity userEntity, AreaDetailsResponse areaDetailsResponse) {
+        return UserDetailsResponse
+                .builder()
+                .id(userEntity.getId())
+                .name(userEntity.getName())
+                .email(userEntity.getEmail())
+                .cpf(userEntity.getCpf())
+                .phone(userEntity.getPhone())
+                .role(userEntity.getProfile())
+                .area(areaDetailsResponse)
+                .build();
+    }
 }

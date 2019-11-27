@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="help.desk.mobile.app.activity.HomeActivity"></activity>
+        <activity android:name="help.desk.mobile.app.activity.TicketDetailsActivity" />
+        <activity
+            android:name="help.desk.mobile.app.activity.HomeActivity"
+            android:exported="true" />
         <activity android:name="help.desk.mobile.app.activity.SignUpActivity" />
         <activity android:name="help.desk.mobile.app.activity.LoginActivity" />
         <activity android:name="help.desk.mobile.app.activity.MainActivity">

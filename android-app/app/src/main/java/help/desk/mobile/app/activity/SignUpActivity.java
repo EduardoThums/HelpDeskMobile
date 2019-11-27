@@ -33,13 +33,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static help.desk.mobile.app.constants.ResultMessages.USER_REGISTERED_WITH_SUCCESS;
 import static help.desk.mobile.app.constants.ValidationMessages.INVALID_EMAIL;
 import static help.desk.mobile.app.constants.ValidationMessages.REQUIRED_CPF;
 import static help.desk.mobile.app.constants.ValidationMessages.REQUIRED_EMAIL;
 import static help.desk.mobile.app.constants.ValidationMessages.REQUIRED_NAME;
 import static help.desk.mobile.app.constants.ValidationMessages.REQUIRED_PASSWORD;
 import static help.desk.mobile.app.constants.ValidationMessages.REQUIRED_PHONE;
-import static help.desk.mobile.app.constants.ValidationMessages.USER_REGISTERED_WITH_SUCCESS;
 
 public class SignUpActivity extends AppCompatActivity implements Validator.ValidationListener {
 

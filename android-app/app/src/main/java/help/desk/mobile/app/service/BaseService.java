@@ -44,7 +44,7 @@ public class BaseService {
 
         final String token = sharedPreferences.getString("token", "");
 
-        client.interceptors().add(chain -> {
+        return new OkHttpClient().newBuilder().addInterceptor(chain -> {
             final Request originalRequest = chain.request();
 
             Request.Builder requestBuilder = originalRequest.newBuilder()
@@ -53,9 +53,7 @@ public class BaseService {
             final Request request = requestBuilder.build();
 
             return chain.proceed(request);
-        });
-
-        return client;
+        }).build();
     }
 
     public AreaService getAreaService() {
@@ -64,6 +62,10 @@ public class BaseService {
 
     public LoginService getLoginService() {
         return this.retrofit.create(LoginService.class);
+    }
+
+    public TicketService getTicketService() {
+        return this.retrofit.create(TicketService.class);
     }
 
     public UserService getUserService() {

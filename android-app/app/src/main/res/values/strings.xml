@@ -9,7 +9,21 @@
     <string name="password_text" translatable="false">Senha</string>
     <string name="cpf_text" translatable="false">CPF</string>
     <string name="phone_text" translatable="false">Telefone</string>
+    <string name="title_text" translatable="false">Título</string>
+    <string name="description_text" translatable="false">Descrição</string>
+    <string name="ticket_message_text" translatable="false">Mensagem</string>
     <string name="area_text" translatable="false">Área de Atuação</string>
     <string name="sign_up_button_action" translatable="false">Cadastrar</string>
     <string name="login_screen_title">@string/login_button</string>
+    <string name="edit_account_screen_title">Edição de Conta</string>
+    <string name="edit_account_confirm_password">Confirme sua senha</string>
+    <string name="edit_account_button_action" translatable="false">Editar conta</string>
+    <string name="ticket_list_my_tickets">Meus Tickets</string>
+    <string name="create_ticket_screen_title">Criar novo ticket</string>
+    <string name="create_ticket_button">Criar ticket</string>
+    <string name="create_ticket_area_text" translatable="false">Área de Suporte</string>
+    <string name="cancel_ticket_button">Cancelar Ticket</string>
+    <string name="approve_ticket_button">Aprovar Ticket</string>
+    <string name="refuse_ticket_button">Recusar Ticket</string>
+
 </resources>

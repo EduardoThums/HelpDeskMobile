@@ -18,6 +18,7 @@
     <string name="edit_account_screen_title">Edição de Conta</string>
     <string name="edit_account_confirm_password">Confirme sua senha</string>
     <string name="edit_account_button_action" translatable="false">Editar conta</string>
+    <string name="delete_account_button_action" translatable="false">Excluir conta</string>
     <string name="ticket_list_my_tickets">Meus Tickets</string>
     <string name="create_ticket_screen_title">Criar novo ticket</string>
     <string name="create_ticket_button">Criar ticket</string>

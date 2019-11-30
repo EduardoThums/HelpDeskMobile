@@ -2,6 +2,7 @@ package help.desk.mobile.app.activity;
 
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.helpdeskmobile.R;
 
@@ -33,14 +34,17 @@ public class TicketDetailsActivity extends AppCompatActivity {
     @BindView(R.id.ticket_details_area)
     protected EditText areaEditText;
 
+    @BindView(R.id.ticketDetailsTextView)
+    protected TextView ticketDetailsTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.ticket = (TicketDetails) getIntent().getExtras().getSerializable("ticket");
         setContentView(R.layout.activity_ticket_details);
         renderActions();
         ButterKnife.bind(this);
+        ticketDetailsTextView.setText(String.format("Ticket #%d", ticket.getId()));
         titleEditText.setText(ticket.getTitle());
         descriptionEditText.setText(ticket.getDescription());
         areaEditText.setText(ticket.getArea().getName());

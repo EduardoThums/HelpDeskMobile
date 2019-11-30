@@ -28,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
         renderFragment(new TicketListFragment());
     }
 
-
     @OnClick(R.id.edit_account_button)
     protected void toEditAccount() {
         renderFragment(new EditAccountFragment());

@@ -50,7 +50,7 @@ public class TicketAdminActionsFragment extends Fragment {
         evaluateTicket(APPROVED, TICKET_APPROVED_WITH_SUCCESS);
     }
 
-    @OnClick(R.id.approve_ticket_button)
+    @OnClick(R.id.refuse_ticket_button)
     protected void refuseTicket() {
         evaluateTicket(DENIED, TICKET_REFUSED_WITH_SUCCESS);
     }

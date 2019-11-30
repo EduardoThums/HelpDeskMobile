@@ -1,6 +1,7 @@
 package help.desk.mobile.app.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import help.desk.mobile.app.activity.MainActivity;
 import help.desk.mobile.app.fragment.adapter.TicketDetailsAdapter;
 import help.desk.mobile.app.model.Page;
 import help.desk.mobile.app.model.TicketDetails;
@@ -50,6 +53,17 @@ public class TicketListFragment extends Fragment {
     private TicketService ticketService;
 
     private UserService userService;
+
+    @OnClick(R.id.logout_button)
+    protected void logout() {
+        final Context context = TicketListFragment.this.getContext();
+        final Intent intent = new Intent(context, MainActivity.class);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_details", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("token");
+        editor.apply();
+        context.startActivity(intent);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

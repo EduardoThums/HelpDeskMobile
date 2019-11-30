@@ -1,6 +1,8 @@
 package help.desk.mobile.app.fragment;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import help.desk.mobile.app.activity.MainActivity;
 import help.desk.mobile.app.model.APIError;
 import help.desk.mobile.app.model.Area;
 import help.desk.mobile.app.model.request.EditUserRequest;
@@ -73,6 +76,29 @@ public class EditAccountFragment extends Fragment implements Validator.Validatio
     @OnClick(R.id.edit_account_button)
     protected void submit() {
         validator.validate();
+    }
+
+    @OnClick(R.id.delete_account_button)
+    protected void deleteAccount() {
+        userService.deleteUserAccount().enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    final Context context = EditAccountFragment.this.getContext();
+                    ToastUtils.displayMessage(context, "Conta excluída com sucesso");
+                    final Intent intent = new Intent(context, MainActivity.class);
+                    context.startActivity(intent);
+                    return;
+                }
+                final APIError error = ErrorUtils.parseError(response);
+                ToastUtils.displayMessage(EditAccountFragment.this.getContext(), error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                ToastUtils.displayErrorWhileCallingServer(EditAccountFragment.this.getContext());
+            }
+        });
     }
 
     @Override
@@ -131,7 +157,7 @@ public class EditAccountFragment extends Fragment implements Validator.Validatio
         editUserCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                handleResponse(response);
+                handleEditResponse(response);
             }
 
             @Override
@@ -150,7 +176,7 @@ public class EditAccountFragment extends Fragment implements Validator.Validatio
                 .build();
     }
 
-    private void handleResponse(final Response<Void> response) {
+    private void handleEditResponse(final Response<Void> response) {
         if (response.isSuccessful()) {
             ToastUtils.displayMessage(EditAccountFragment.this.getContext(), ACCOUNT_UPDATED_WITH_SUCCESS);
             clearFields();

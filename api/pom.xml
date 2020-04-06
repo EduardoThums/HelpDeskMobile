@@ -123,9 +123,9 @@
 
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>heroku</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
         </profile>
     </profiles>

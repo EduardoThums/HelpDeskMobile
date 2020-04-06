@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+  api:
+    image: helpdeskmobile-api
+    build: ./
+    container_name: local-helpdeskmobile-api
+    ports:
+      - "8080:8080"
+
+  database:
+    image: postgres:12.2
+    container_name: local-helpdeskmobile-database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: helpdeskmobile
+      POSTGRES_PASSWORD: helpdeskmobile
+    volumes:
+      - helpdeskmobile-data:/var/lib/postgresql/data
+
+volumes:
+  helpdeskmobile-data:

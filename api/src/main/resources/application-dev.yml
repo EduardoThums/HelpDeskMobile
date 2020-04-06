@@ -1,0 +1,3 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://local-helpdeskmobile-database:5432/helpdeskmobile
